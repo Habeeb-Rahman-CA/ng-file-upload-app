@@ -1,0 +1,33 @@
+<div class="max-w-md mx-auto mt-10 p-5 bg-white rounded shadow-lg">
+    <h2 class="text-xl font-semibold text-center mb-5">File Upload</h2>
+
+    <div class="mb-4">
+        <input type="file" (change)="onFileSelect($event)"
+            class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div *ngIf="selectedImage" class="mb-4">
+        <p class="text-center mb-2">Preview</p>
+        <img [src]="imagePreview" class="w-full h-48 object-cover rounded" />
+    </div>
+
+    <div *ngIf="isUploading" class="mb-4">
+        <label class="block text-sm font-medium">Upload Progress</label>
+        <div class="relative pt-1">
+            <div class="flex mb-2 items-center justify-between">
+                <span class="text-sm font-semibold">Uploading...</span>
+                <span class="text-sm">{{ progress }}%</span>
+            </div>
+            <div class="flex mb-2 items-center justify-between">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-blue-600 h-2.5 rounded-full" [style.width]="progress + '%'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button *ngIf="selectedImage" (click)="uploadFile()"
+        class="w-full bg-blue-500 text-white py-2 rounded mt-4 hover:bg-blue-600">
+        Upload File
+    </button>
+</div>
